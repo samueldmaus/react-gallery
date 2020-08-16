@@ -1,0 +1,9 @@
+img {
+    height: 200px;
+    width: 150px;
+}
+
+.moviePoster {
+    display: inline-block;
+    margin: 10px;
+}

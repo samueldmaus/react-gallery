@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './GalleryItem.css';
 
 class GalleryItem extends Component{
     state = {
@@ -13,7 +14,7 @@ class GalleryItem extends Component{
 
     render(){
         return(
-            <div>
+            <div className="moviePoster">
             {this.state.showDescription ? <img onClick={this.changeDescripton} src={this.props.image.path} 
             alt={this.props.image.description}/> : <p onClick={this.changeDescripton}>{this.props.image.description}</p>}
             <br/>
