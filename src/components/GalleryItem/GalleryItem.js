@@ -18,7 +18,7 @@ class GalleryItem extends Component{
             {this.state.showDescription ? <img onClick={this.changeDescripton} src={this.props.image.path} 
             alt={this.props.image.description}/> : <p onClick={this.changeDescripton}>{this.props.image.description}</p>}
             <br/>
-            <button onClick={()=>this.props.updateLikes(this.props.image)}>Love It!</button>
+            <button className="deleteBtn" onClick={()=>this.props.updateLikes(this.props.image)}>Love It!</button>
             <p>{this.props.image.likes} people love this!</p>
             </div>
         )
