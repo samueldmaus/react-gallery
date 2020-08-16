@@ -8,3 +8,7 @@ img {
     margin: 10px;
     text-align: center;
 }
+
+p {
+    font: 0.75em sans-serif;
+}

@@ -30,7 +30,7 @@ class GalleryItem extends Component{
                 <DeleteIcon/></IconButton>
 
             
-            <p>{this.props.image.likes} people love this!</p>
+            <p>{this.props.image.likes} people <IconButton aria-label="favorite" disabled color="secondary"><FavoriteIcon/></IconButton> this!</p>
             </div>
         )
     }
