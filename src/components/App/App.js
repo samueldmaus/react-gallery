@@ -24,7 +24,9 @@ class App extends Component {
   };
 
   updateLikes = (image) => {
-    axios.put(`/gallery/like/${image.id}`)
+    let likes = image.likes;
+    likes += 1;
+    axios.put(`/gallery/like/${image.id}`, {newLikes: likes})
     .then(response => {
       this.getGalleryList();
     }).catch(error => {

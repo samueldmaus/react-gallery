@@ -7,19 +7,22 @@ const pool = require('../modules/pool')
 
 // PUT Route
 router.put('/like/:id', (req, res) => {
-    console.log(req.params);
-    const galleryId = req.params.id;
-    for(const galleryItem of galleryItems) {
-        if(galleryItem.id == galleryId) {
-            galleryItem.likes += 1;
-        }
-    }
-    res.sendStatus(200);
+    query = `UPDATE "gallery"
+    SET "likes" = ${req.body.newLikes}
+    WHERE "id" = $1;`;
+    pool.query(query, [req.params.id])
+    .then((result) => {
+        res.sendStatus(200);
+    }).catch((error) => {
+        console.log('error in PUT:', error);
+        res.sendStatus(500);
+    });
 }); // END PUT Route
 
 // GET Route
 router.get('/', (req, res) => {
-    query = `SELECT * FROM "gallery";`;
+    query = `SELECT * FROM "gallery"
+    ORDER BY "id";`;
     pool.query(query)
     .then((result) => {
         res.send(result.rows)
