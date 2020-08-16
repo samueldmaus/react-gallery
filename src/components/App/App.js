@@ -17,6 +17,10 @@ class App extends Component {
     }
   };
 
+  handleSubmit = (event) => {
+    event.prevenDefault();
+    this.addMovie();
+  }
   handleChangeFor = (event, propertyName) => {
     this.setState({
       newMovie: {
@@ -26,7 +30,7 @@ class App extends Component {
     })
   };
 
-  addMovie = (event) => {
+  addMovie = () => {
     axios.post('/gallery', this.state.newMovie)
     .then(response => {
       this.getGalleryList();
@@ -78,7 +82,8 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Gallery of great movies</h1>
         </header>
-        <GalleryForm handleChangeFor={this.handleChangeFor} newMovie={this.state.newMovie} addMovie={this.addMovie}/>
+        <GalleryForm handleChangeFor={this.handleChangeFor} newMovie={this.state.newMovie} handleSubmit={this.handleSubmit}
+        addMovie={this.addMovie}/>
         <br/>
         <GalleryList gallery={this.state.gallery} updateLikes={this.updateLikes} 
         deleteMovie={this.deleteMovie}/>
