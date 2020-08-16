@@ -34,6 +34,15 @@ class App extends Component {
     });
   };
 
+  deleteMovie = (image) => {
+    axios.delete(`/gallery/${image.id}`)
+    .then(response => {
+      this.getGalleryList();
+    }).catch(error => {
+      console.log('error in DELETE:', error);
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -41,7 +50,8 @@ class App extends Component {
           <h1 className="App-title">Gallery of great movies</h1>
         </header>
         <br/>
-        <GalleryList gallery={this.state.gallery} updateLikes={this.updateLikes} />
+        <GalleryList gallery={this.state.gallery} updateLikes={this.updateLikes} 
+        deleteMovie={this.deleteMovie}/>
       </div>
     );
   }
