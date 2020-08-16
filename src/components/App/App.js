@@ -19,8 +19,17 @@ class App extends Component {
         gallery: response.data
       })
     }).catch(error => {
-      console.log('error in GET:', error)
-    })
+      console.log('error in GET:', error);
+    });
+  };
+
+  updateLikes = (image) => {
+    axios.put(`/gallery/like/${image.id}`)
+    .then(response => {
+      this.getGalleryList();
+    }).catch(error => {
+      console.log('error in PUT:', error)
+    });
   };
 
   render() {
@@ -31,7 +40,7 @@ class App extends Component {
         </header>
         <br/>
         <p>Gallery goes here</p>
-        <GalleryList gallery={this.state.gallery} />
+        <GalleryList gallery={this.state.gallery} updateLikes={this.updateLikes} />
       </div>
     );
   }
