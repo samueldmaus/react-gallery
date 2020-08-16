@@ -7,10 +7,12 @@ class GalleryForm extends Component{
         return(
             <>
             <h2>Add Movie</h2>
-            <form>
-                <TextField id="outlined-basic" label="Movie" variant="outlined" placeholder="Movie URL"/>
-                <TextField id="outlined-basic" label="Title" variant="outlined" placeholder="Movie Title/Description"/>
-                <Button variant="contained" color="primary">Add Movie</Button>
+            <form onSubmit={this.props.addMovie}>
+                <TextField size="small" id="outlined-basic" label="Movie Poster URL" 
+                variant="outlined" value={this.props.newMovie.path} onChange={(event)=>this.props.handleChangeFor(event, 'path')}/>
+                <TextField size="small" id="outlined-basic" label="Title/Description" 
+                variant="outlined" value={this.props.newMovie.description} onChange={(event)=>this.props.handleChangeFor(event, 'description')}/>
+                <Button variant="contained" color="primary" onClick={this.props.addMovie}>Add Movie</Button>
             </form>
             </>
             

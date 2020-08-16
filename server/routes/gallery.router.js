@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
 // const galleryItems = require('../modules/gallery.data');
-const pool = require('../modules/pool')
+const pool = require('../modules/pool');
+const { query } = require('../modules/pool');
 
 // DO NOT MODIFY THIS FILE FOR BASE MODE
 
 // PUT Route
 router.put('/like/:id', (req, res) => {
-    query = `UPDATE "gallery"
+    let query = `UPDATE "gallery"
     SET "likes" = ${req.body.newLikes}
     WHERE "id" = $1;`;
     pool.query(query, [req.params.id])
@@ -21,7 +22,7 @@ router.put('/like/:id', (req, res) => {
 
 // GET Route
 router.get('/', (req, res) => {
-    query = `SELECT * FROM "gallery"
+    let query = `SELECT * FROM "gallery"
     ORDER BY "id";`;
     pool.query(query)
     .then((result) => {
@@ -35,7 +36,7 @@ router.get('/', (req, res) => {
 
 // DELETE Route
 router.delete('/:id', (req, res) => {
-    query = `DELETE FROM "gallery"
+    let query = `DELETE FROM "gallery"
     WHERE "id" = $1;`;
     pool.query(query, [req.params.id])
     .then(result => {
@@ -43,6 +44,19 @@ router.delete('/:id', (req, res) => {
     }).catch(error => {
         console.log('error in DELETE', error);
         res.sendStatus(500);
+    })
+}); // END DELETE route
+
+// POST Route
+router.post('/', (req, res) => {
+    let query = `INSERT INTO "gallery" ("path", "description")
+    VALUES ($1, $2);`;
+    pool.query(query, [req.body.path, req.body.description])
+    .then(response => {
+        res.sendStatus(201);
+    }).catch(error => {
+        console.log('error in POST:', error);
+        res.setStatus(500);
     })
 })
 
