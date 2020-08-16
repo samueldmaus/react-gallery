@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import GalleryList from '../GalleryList/GalleryList.js';
 import axios from 'axios';
+import GalleryForm from '../GalleryForm/GalleryForm.js';
 
 class App extends Component {
   componentDidMount() {
@@ -9,7 +10,11 @@ class App extends Component {
   };
 
   state = {
-    gallery:[]
+    gallery:[],
+    newMovie: {
+      path:'',
+      description:''
+    }
   };
 
   getGalleryList = () => {
@@ -49,6 +54,7 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">Gallery of great movies</h1>
         </header>
+        <GalleryForm />
         <br/>
         <GalleryList gallery={this.state.gallery} updateLikes={this.updateLikes} 
         deleteMovie={this.deleteMovie}/>
