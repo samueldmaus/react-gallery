@@ -18,7 +18,7 @@ class App extends Component {
   };
 
   handleSubmit = (event) => {
-    event.prevenDefault();
+    event.preventDefault();
     this.addMovie();
   }
   handleChangeFor = (event, propertyName) => {
