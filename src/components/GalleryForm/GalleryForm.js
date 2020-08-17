@@ -19,7 +19,7 @@ class GalleryForm extends Component{
                 variant="outlined" value={this.props.newMovie.description} onChange={(event)=>this.props.handleChangeFor(event, 'description')}/>
                 </Box>
                 <Box m={1} display="inline">
-                    <Button variant="contained" color="primary" type="submit" onClick={this.props.addMovie}>Add Movie</Button>
+                    <Button variant="contained" color="primary" type="submit">Add Movie</Button>
                 </Box>
             </form>
             </>
